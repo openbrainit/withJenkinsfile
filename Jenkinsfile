@@ -1,24 +1,10 @@
 pipeline {
-    agent any
+    agent { docker { image 'maven:3.3.3' } }
     stages {
-        stage('build'){
-            steps{
-                echo "etape de build"
-                sh "python --version"
-            }
-        }
-        stage('Test'){
-            steps{
-                echo "etape de test"
-                echo "etape de test"
-            }
-        }
-        stage('Deploy'){
-            steps{
-                echo "etape de test"
+        stage('build') {
+            steps {
+                sh 'mvn --version'
             }
         }
     }
-    
-    
 }
