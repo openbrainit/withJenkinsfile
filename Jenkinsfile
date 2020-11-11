@@ -1,16 +1,15 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
-    environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
-    }
+    agent any
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                echo "${DB_ENGINE}"
-                sh 'mvn --version'
-                sh 'touch test'
+                sh './gradlew check'
             }
+        }
+    }
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
         }
     }
 }
