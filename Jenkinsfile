@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 
-                print 'docker'
+                sh 'docker'
             }
         }
     }
